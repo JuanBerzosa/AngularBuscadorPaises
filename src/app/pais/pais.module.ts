@@ -16,6 +16,12 @@ import { DetallePaisComponent } from './pages/detalle-pais/detalle-pais.componen
   ],
   imports: [
     CommonModule
-  ]
+  ],
+  exports: [
+    DetallePaisComponent,
+    PorCapitalComponent,
+    PorPaisComponent,
+    PorRegionComponent,
+  ], 
 })
 export class PaisModule { }
