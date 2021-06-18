@@ -1,21 +1,20 @@
 import { Component, OnInit } from '@angular/core';
+import { PaisService } from '../../services/pais.service';
 
 @Component({
   selector: 'app-por-pais',
   templateUrl: './por-pais.component.html',
-  styles: [
-  ]
+  styles: [],
 })
 export class PorPaisComponent implements OnInit {
+  paisABuscar = '';
 
-  paisABuscar = "";
+  constructor(private paisService: PaisService) {}
 
-  constructor() { }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
-  }
-
-  buscar(){
+  buscar() {
     console.log(this.paisABuscar);
+    this.paisService.buscarPorPais(this.paisABuscar);
   }
 }
