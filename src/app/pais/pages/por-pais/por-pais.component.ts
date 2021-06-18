@@ -8,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PorPaisComponent implements OnInit {
 
+  paisABuscar = "";
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  buscar(){
+    console.log(this.paisABuscar);
+  }
 }

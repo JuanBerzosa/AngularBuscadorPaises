@@ -2,8 +2,14 @@
 <hr />
 <div class="row">
   <div class="col">
-    <form>
-      <input type="text" placeholder="Buscar país..." class="form-control" />
+    <form (ngSubmit)="buscar()" autocomplete="off">
+      <input
+        type="text"
+        placeholder="Buscar país..."
+        class="form-control"
+        [(ngModel)]="paisABuscar"
+        name="paisABuscar"
+      />
     </form>
   </div>
 </div>
