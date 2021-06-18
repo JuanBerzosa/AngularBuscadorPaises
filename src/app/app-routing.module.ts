@@ -12,15 +12,15 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: '/pais',
+    path: 'pais',
     component: PorPaisComponent,
   },
   {
-    path: '/region',
+    path: 'region',
     component: PorRegionComponent,
   },
   {
-    path: '/capital',
+    path: 'capital',
     component: PorCapitalComponent,
   },
   {
