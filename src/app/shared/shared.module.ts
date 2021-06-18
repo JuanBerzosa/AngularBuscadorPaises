@@ -2,19 +2,16 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { AppRoutingModule } from '../app-routing.module';
-
-
+import { RouterModule } from '@angular/router';
 
 @NgModule({
-  declarations: [
-    SidebarComponent
-  ],
+  declarations: [SidebarComponent],
   imports: [
     CommonModule,
-    AppRoutingModule
+    // AppRoutingModule,
+    // Como solo vamos a usar el routerlink, con importar el router module sobra
+    RouterModule,
   ],
-  exports: [
-    SidebarComponent
-  ]
+  exports: [SidebarComponent],
 })
-export class SharedModule { }
+export class SharedModule {}
