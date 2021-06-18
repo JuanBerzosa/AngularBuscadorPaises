@@ -4,9 +4,26 @@
       <h2>Busquedas</h2>
       <hr />
       <div class="list-group">
-        <a routerLink='pais' class="list-group-item">Buscar País</a>
-        <a routerLink='region' class="list-group-item">Buscar Región</a>
-        <a routerLink='capital' class="list-group-item">Buscar Capital</a>
+        <!-- <a routerLink="pais" routerLinkActive="active" class="list-group-item">Buscar País</a> -->
+        <!-- Si ponemos una ruta no vacia, como por ejemplo en el comentario de arriba, no hace falta poner lo de routerLinkActiveOptions: -->
+        <!-- Solo lo ponemos ya que al ser la ruta vacia, está activa siempre pues las otras rutas antes del / también tienen un '' implicito -->
+        <a
+          routerLink=""
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="list-group-item"
+          >Buscar País</a
+        >
+
+        <a routerLink="region" routerLinkActive="active" class="list-group-item"
+          >Buscar Región</a
+        >
+        <a
+          routerLink="capital"
+          routerLinkActive="active"
+          class="list-group-item"
+          >Buscar Capital</a
+        >
       </div>
     </div>
     <div class="col-12 col-md-9">
