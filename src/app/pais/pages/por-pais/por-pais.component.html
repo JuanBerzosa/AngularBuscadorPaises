@@ -15,9 +15,11 @@
 </div>
 <hr />
 
-<div class="alert alert-danger">No se encontró ningun país</div>
+<div *ngIf="paisService.errorPaisNoEncontrado" class="alert alert-danger">
+  No se encontró ningun país con el término {{ paisABuscar }}
+</div>
 
-<div class="ro">
+<div *ngIf="!paisService.errorPaisNoEncontrado" class="row">
   <div class="col">
     <table class="table table-hover">
       <thead>
@@ -30,11 +32,11 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1</td>
-          <td>Bandera</td>
-          <td>España</td>
-          <td>50 Millones</td>
+        <tr *ngFor="let pais of listaPaisesEncontrados; let i = index">
+          <td>{{ i }}</td>
+          <td><img [src]="pais.flag" alt="{{ pais.demonym }} flag" /></td>
+          <td>{{ pais.name }}</td>
+          <td>{{ pais.population }}</td>
           <td><a href="#">ver...</a></td>
         </tr>
       </tbody>

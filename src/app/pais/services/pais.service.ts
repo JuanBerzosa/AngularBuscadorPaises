@@ -5,12 +5,40 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class PaisService {
-  url = 'https://restcountries.eu/rest/v2/name';
+  apiUrl = 'https://restcountries.eu/rest/v2';
+
+  private _listaPaisesEncontrados: any[] = [];
+  get listaPaisesEncontrados(): any[] {
+    console.log('get listaPaisesEncontrados():', this._listaPaisesEncontrados);
+    return this._listaPaisesEncontrados;
+  }
+
+  private _errorPaisNoEncontrado = false;
+  get errorPaisNoEncontrado(): boolean {
+    console.log('get errorPaisNoEncontrado():', this._errorPaisNoEncontrado);
+    return this._errorPaisNoEncontrado;
+  }
+
   constructor(private http: HttpClient) {}
 
   buscarPorPais(paisBuscado: string) {
-    this.http.get(`${this.url}/${paisBuscado}`).subscribe((paisesResponse) => {
-      console.log(paisesResponse);
-    });
+    // ponemos a false el mensaje de error
+    this._errorPaisNoEncontrado = false;
+
+    this.http.get<any>(`${this.apiUrl}/name/${paisBuscado}`).subscribe(
+      (paisesResponse) => {
+        this._listaPaisesEncontrados = paisesResponse;
+      },
+      (err) => {
+        console.error('El error es, por consoleError', err);
+        if ((err.status = 404)) {
+          this._errorPaisNoEncontrado = true;
+        }
+      }
+    );
+  }
+
+  vaciarListaPaisesEncontrados() {
+    this._listaPaisesEncontrados = [];
   }
 }
