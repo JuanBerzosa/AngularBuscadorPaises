@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Pais } from '../../models/interfaces/pais.interface';
 import { PaisService } from '../../services/pais.service';
 
 @Component({
@@ -9,11 +10,11 @@ import { PaisService } from '../../services/pais.service';
 export class PorPaisComponent {
   paisABuscar = '';
 
-  get listaPaisesEncontrados(): any[] {
+  get listaPaisesEncontrados(): Pais[] {
     console.log('Acceso a listPaisesEncontrados en porPais.ts');
     return this.paisService.listaPaisesEncontrados;
   }
-  // set listaPaisesEncontrados(listaPaises: any[]) {
+  // set listaPaisesEncontrados(listaPaises: Pais[]) {
   //   this.listaPaisesEncontrados = listaPaises;
   // }
 

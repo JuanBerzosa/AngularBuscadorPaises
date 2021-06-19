@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Pais } from '../models/interfaces/pais.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -7,8 +8,8 @@ import { Injectable } from '@angular/core';
 export class PaisService {
   apiUrl = 'https://restcountries.eu/rest/v2';
 
-  private _listaPaisesEncontrados: any[] = [];
-  get listaPaisesEncontrados(): any[] {
+  private _listaPaisesEncontrados: Pais[] = [];
+  get listaPaisesEncontrados(): Pais[] {
     console.log('get listaPaisesEncontrados():', this._listaPaisesEncontrados);
     return this._listaPaisesEncontrados;
   }
@@ -25,7 +26,8 @@ export class PaisService {
     // ponemos a false el mensaje de error
     this._errorPaisNoEncontrado = false;
 
-    this.http.get<any>(`${this.apiUrl}/name/${paisBuscado}`).subscribe(
+    this.http.get<Pais[]>(`${this.apiUrl}/name/${paisBuscado}`)
+    .subscribe(
       (paisesResponse) => {
         this._listaPaisesEncontrados = paisesResponse;
       },
