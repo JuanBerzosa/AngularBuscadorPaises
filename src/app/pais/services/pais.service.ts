@@ -18,6 +18,9 @@ export class PaisService {
   get errorTerminoNoEncontrado(): boolean {
     return this._errorTerminoNoEncontrado;
   }
+  private _paisDetalle: Pais | null = null;
+  get paisDetalle(): Pais|null {
+    return this._paisDetalle;
   }
 
   constructor(private http: HttpClient) {}
@@ -54,6 +57,24 @@ export class PaisService {
         }
       }
     );
+  }
+
+  detallePaisPorCod(paisBuscadoCod: string) {
+    // ponemos a false el mensaje de error
+    this._errorTerminoNoEncontrado = false;
+
+    return this.http.get<Pais>(`${this.apiUrl}/alpha/${paisBuscadoCod}`)
+    // .subscribe(
+    //   (paisResponse) => {
+    //     this._paisDetalle = paisResponse;
+    //   },
+    //   (err) => {
+    //     console.error('El error es, por consoleError', err);
+    //     if ((err.status = 404)) {
+    //       this._errorTerminoNoEncontrado = true;
+    //     }
+    //   }
+    // );
   }
 
   vaciarListaPaisesEncontrados() {

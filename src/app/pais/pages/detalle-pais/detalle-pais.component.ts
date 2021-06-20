@@ -1,16 +1,37 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Pais } from '../../models/interfaces/pais.interface';
+import { PaisService } from '../../services/pais.service';
 
 @Component({
   selector: 'app-detalle-pais',
   templateUrl: './detalle-pais.component.html',
-  styles: [
-  ]
+  styles: [],
 })
 export class DetallePaisComponent implements OnInit {
+  paisDetalle: Pais | null;
+  errorTerminoNoEncontrado = false;
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private paisService: PaisService
+  ) {
+    this.paisDetalle = null;
   }
 
+  ngOnInit(): void {
+    this.activatedRoute.params.subscribe(({ id }) => {
+      this.paisService.detallePaisPorCod(id).subscribe(
+        (paisResponse) => {
+          this.paisDetalle = paisResponse;
+        },
+        (err) => {
+          console.error('El error es, por consoleError', err);
+          if ((err.status = 404)) {
+            this.errorTerminoNoEncontrado = true;
+          }
+        }
+      );
+    });
+  }
 }
