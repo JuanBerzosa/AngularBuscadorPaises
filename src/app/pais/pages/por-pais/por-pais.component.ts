@@ -28,4 +28,14 @@ export class PorPaisComponent {
 
     this.paisService.buscarPorPais(this.paisABuscar);
   }
+
+  sugerencias(termino: string) {
+    // this.paisABuscar = termino;
+
+    // // vaciamos la anterior lista si la hubiera
+    // this.paisService.vaciarListaPaisesEncontrados();
+
+    // this.paisService.buscarPorPais(this.paisABuscar);
+    this.buscar(termino);
+  }
 }
