@@ -1,9 +1,10 @@
 <form (ngSubmit)="buscar()" autocomplete="off">
   <input
     type="text"
-    placeholder="Buscar país..."
+    [placeholder]=placeholder
     class="form-control"
     [(ngModel)]="termino"
     name="termino"
+    (input)="teclaPresionada()"
   />
 </form>
