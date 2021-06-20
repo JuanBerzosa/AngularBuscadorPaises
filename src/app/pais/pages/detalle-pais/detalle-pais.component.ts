@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
 import { Pais } from '../../models/interfaces/pais.interface';
 import { PaisService } from '../../services/pais.service';
 
@@ -20,18 +21,17 @@ export class DetallePaisComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe(({ id }) => {
-      this.paisService.detallePaisPorCod(id).subscribe(
+    this.activatedRoute.params
+      .pipe(switchMap(({ id }) => this.paisService.detallePaisPorCod(id)))
+      .subscribe(
         (paisResponse) => {
           this.paisDetalle = paisResponse;
         },
         (err) => {
-          console.error('El error es, por consoleError', err);
           if ((err.status = 404)) {
             this.errorTerminoNoEncontrado = true;
           }
         }
       );
-    });
   }
 }
