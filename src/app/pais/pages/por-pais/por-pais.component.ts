@@ -20,8 +20,8 @@ export class PorPaisComponent {
 
   constructor(public paisService: PaisService) {}
 
-  buscar() {
-    console.log('buscar en porPias.ts', this.paisABuscar);
+  buscar(termino: string) {
+    this.paisABuscar = termino;
 
     // vaciamos la anterior lista si la hubiera
     this.paisService.vaciarListaPaisesEncontrados();
