@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, tap } from 'rxjs/operators';
 import { Pais } from '../../models/interfaces/pais.interface';
 import { PaisService } from '../../services/pais.service';
 
@@ -22,7 +22,10 @@ export class DetallePaisComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.params
-      .pipe(switchMap(({ id }) => this.paisService.detallePaisPorCod(id)))
+      .pipe(
+        switchMap(({ id }) => this.paisService.detallePaisPorCod(id)),
+        tap(console.log)
+      )
       .subscribe(
         (paisResponse) => {
           this.paisDetalle = paisResponse;
