@@ -14,20 +14,30 @@ export class PaisService {
     return this._listaPaisesEncontrados;
   }
 
-  private _errorPaisNoEncontrado = false;
-  get errorPaisNoEncontrado(): boolean {
-    console.log('get errorPaisNoEncontrado():', this._errorPaisNoEncontrado);
-    return this._errorPaisNoEncontrado;
+  private _errorTerminoNoEncontrado = false;
+  get errorTerminoNoEncontrado(): boolean {
+    return this._errorTerminoNoEncontrado;
+  }
   }
 
   constructor(private http: HttpClient) {}
 
   buscarPorPais(paisBuscado: string) {
     // ponemos a false el mensaje de error
-    this._errorPaisNoEncontrado = false;
+    this._errorTerminoNoEncontrado = false;
 
-    this.http.get<Pais[]>(`${this.apiUrl}/name/${paisBuscado}`)
-    .subscribe(
+    this.http.get<Pais[]>(`${this.apiUrl}/name/${paisBuscado}`).subscribe(
+      (paisesResponse) => {
+        this._listaPaisesEncontrados = paisesResponse;
+      },
+      (err) => {
+        console.error('El error es, por consoleError', err);
+        if ((err.status = 404)) {
+          this._errorTerminoNoEncontrado = true;
+        }
+      }
+    );
+  }
       (paisesResponse) => {
         this._listaPaisesEncontrados = paisesResponse;
       },

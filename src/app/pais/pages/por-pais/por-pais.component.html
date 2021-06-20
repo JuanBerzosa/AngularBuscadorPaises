@@ -9,11 +9,11 @@
 </div>
 <hr />
 
-<div *ngIf="paisService.errorPaisNoEncontrado" class="alert alert-danger">
+<div *ngIf="paisService.errorTerminoNoEncontrado" class="alert alert-danger">
   No se encontró ningun país con el término {{ paisABuscar }}
 </div>
 
-<div *ngIf="!paisService.errorPaisNoEncontrado" class="row">
+<div *ngIf="!paisService.errorTerminoNoEncontrado" class="row">
   <div class="col">
     <app-tabla [listaPaisesEncontrados]="listaPaisesEncontrados"></app-tabla>
   </div>
