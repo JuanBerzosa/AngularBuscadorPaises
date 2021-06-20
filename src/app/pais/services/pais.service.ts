@@ -10,7 +10,6 @@ export class PaisService {
 
   private _listaPaisesEncontrados: Pais[] = [];
   get listaPaisesEncontrados(): Pais[] {
-    console.log('get listaPaisesEncontrados():', this._listaPaisesEncontrados);
     return this._listaPaisesEncontrados;
   }
 
@@ -34,7 +33,7 @@ export class PaisService {
         this._listaPaisesEncontrados = paisesResponse;
       },
       (err) => {
-        console.error('El error es, por consoleError', err);
+
         if ((err.status = 404)) {
           this._errorTerminoNoEncontrado = true;
         }

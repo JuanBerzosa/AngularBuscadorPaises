@@ -14,7 +14,6 @@ export class PorCapitalComponent implements OnInit {
   terminoBuscar = '';
 
   get listaPaisesEncontrados(): Pais[] {
-    console.log('Acceso a listPaisesEncontrados en porPais.ts');
     return this.paisService.listaPaisesEncontrados;
   }
 
