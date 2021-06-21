@@ -1,2 +1,26 @@
-<h2>Por región</h2>
+<h3>Buscar por region <small>Región activa</small></h3>
 <hr />
+
+<div class="row">
+  <div class="col">
+    <button
+      *ngFor="let region of regiones"
+      class="btn btn-outline-primary mx-1"
+      (click)="buscar(region)"
+      [class.btn-primary]="region===regionABuscar"
+    >
+      {{ region | titlecase}}
+    </button>
+  </div>
+</div>
+<hr />
+
+<div *ngIf="paisService.errorTerminoNoEncontrado" class="alert alert-danger">
+  No se encontró ningun país con el término {{ regionABuscar }}
+</div>
+
+<div *ngIf="!paisService.errorTerminoNoEncontrado" class="row">
+  <div class="col">
+    <app-tabla [listaPaisesEncontrados]="listaPaisesEncontrados"></app-tabla>
+  </div>
+</div>

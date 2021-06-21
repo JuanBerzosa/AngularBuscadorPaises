@@ -33,7 +33,6 @@ export class PaisService {
         this._listaPaisesEncontrados = paisesResponse;
       },
       (err) => {
-
         if ((err.status = 404)) {
           this._errorTerminoNoEncontrado = true;
         }
@@ -46,6 +45,24 @@ export class PaisService {
     this._errorTerminoNoEncontrado = false;
 
     this.http.get<Pais[]>(`${this.apiUrl}/capital/${capitalBuscada}`).subscribe(
+      (paisesResponse) => {
+        this._listaPaisesEncontrados = paisesResponse;
+      },
+      (err) => {
+        console.error('El error es, por consoleError', err);
+        if ((err.status = 404)) {
+          this._errorTerminoNoEncontrado = true;
+        }
+      }
+    );
+  }
+
+  buscarPorRegion(regionBuscada: string) {
+
+    // ponemos a false el mensaje de error
+    this._errorTerminoNoEncontrado = false;
+
+    this.http.get<Pais[]>(`${this.apiUrl}/region/${regionBuscada}`).subscribe(
       (paisesResponse) => {
         this._listaPaisesEncontrados = paisesResponse;
       },
