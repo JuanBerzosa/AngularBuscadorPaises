@@ -1,5 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+
 import { Pais } from '../models/interfaces/pais.interface';
 
 @Injectable({
@@ -22,6 +23,11 @@ export class PaisService {
     return this._paisDetalle;
   }
 
+  httpParams: HttpParams = new HttpParams().set(
+    'fields',
+    'name;capital;alpha2Code;flag;population'
+  );
+
   constructor(private http: HttpClient) {}
 
   buscarPorPais(paisBuscado: string) {
@@ -29,9 +35,9 @@ export class PaisService {
     this._errorTerminoNoEncontrado = false;
 
     this.http
-      .get<Pais[]>(
-        `${this.apiUrl}/name/${paisBuscado}?fields=name;capital;alpha2Code;flag;population`
-      )
+      .get<Pais[]>(`${this.apiUrl}/name/${paisBuscado}`, {
+        params: this.httpParams,
+      })
       .subscribe(
         (paisesResponse) => {
           console.log('paisesResponse', paisesResponse);
@@ -50,9 +56,9 @@ export class PaisService {
     this._errorTerminoNoEncontrado = false;
 
     this.http
-      .get<Pais[]>(
-        `${this.apiUrl}/capital/${capitalBuscada}?fields=name;capital;alpha2Code;flag;population`
-      )
+      .get<Pais[]>(`${this.apiUrl}/capital/${capitalBuscada}`, {
+        params: this.httpParams,
+      })
       .subscribe(
         (paisesResponse) => {
           this._listaPaisesEncontrados = paisesResponse;
@@ -71,9 +77,9 @@ export class PaisService {
     this._errorTerminoNoEncontrado = false;
 
     this.http
-      .get<Pais[]>(
-        `${this.apiUrl}/region/${regionBuscada}?fields=name;capital;alpha2Code;flag;population`
-      )
+      .get<Pais[]>(`${this.apiUrl}/region/${regionBuscada}`, {
+        params: this.httpParams,
+      })
       .subscribe(
         (paisesResponse) => {
           this._listaPaisesEncontrados = paisesResponse;
