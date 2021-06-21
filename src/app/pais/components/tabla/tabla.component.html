@@ -9,13 +9,13 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let pais of listaPaisesEncontrados; let i = index">
+    <tr *ngFor="let pais of listaPaisesEncontrados; let i = index" class="animate__animated animate__fadeIn">
       <td>{{ i + 1 }}</td>
       <td>
         <img
           [src]="pais.flag"
           alt="{{ pais.demonym }} flag"
-          class="small-flag"
+          class="small-flag animate__animated animate__bounceIn"
         />
       </td>
       <td>{{ pais.name }}</td>
