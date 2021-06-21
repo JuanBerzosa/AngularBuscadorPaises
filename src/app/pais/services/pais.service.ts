@@ -18,7 +18,7 @@ export class PaisService {
     return this._errorTerminoNoEncontrado;
   }
   private _paisDetalle: Pais | null = null;
-  get paisDetalle(): Pais|null {
+  get paisDetalle(): Pais | null {
     return this._paisDetalle;
   }
 
@@ -28,58 +28,70 @@ export class PaisService {
     // ponemos a false el mensaje de error
     this._errorTerminoNoEncontrado = false;
 
-    this.http.get<Pais[]>(`${this.apiUrl}/name/${paisBuscado}`).subscribe(
-      (paisesResponse) => {
-        this._listaPaisesEncontrados = paisesResponse;
-      },
-      (err) => {
-        if ((err.status = 404)) {
-          this._errorTerminoNoEncontrado = true;
+    this.http
+      .get<Pais[]>(
+        `${this.apiUrl}/name/${paisBuscado}?fields=name;capital;alpha2Code;flag;population`
+      )
+      .subscribe(
+        (paisesResponse) => {
+          console.log('paisesResponse', paisesResponse);
+          this._listaPaisesEncontrados = paisesResponse;
+        },
+        (err) => {
+          if ((err.status = 404)) {
+            this._errorTerminoNoEncontrado = true;
+          }
         }
-      }
-    );
+      );
   }
 
   buscarPorCapital(capitalBuscada: string) {
     // ponemos a false el mensaje de error
     this._errorTerminoNoEncontrado = false;
 
-    this.http.get<Pais[]>(`${this.apiUrl}/capital/${capitalBuscada}`).subscribe(
-      (paisesResponse) => {
-        this._listaPaisesEncontrados = paisesResponse;
-      },
-      (err) => {
-        console.error('El error es, por consoleError', err);
-        if ((err.status = 404)) {
-          this._errorTerminoNoEncontrado = true;
+    this.http
+      .get<Pais[]>(
+        `${this.apiUrl}/capital/${capitalBuscada}?fields=name;capital;alpha2Code;flag;population`
+      )
+      .subscribe(
+        (paisesResponse) => {
+          this._listaPaisesEncontrados = paisesResponse;
+        },
+        (err) => {
+          console.error('El error es, por consoleError', err);
+          if ((err.status = 404)) {
+            this._errorTerminoNoEncontrado = true;
+          }
         }
-      }
-    );
+      );
   }
 
   buscarPorRegion(regionBuscada: string) {
-
     // ponemos a false el mensaje de error
     this._errorTerminoNoEncontrado = false;
 
-    this.http.get<Pais[]>(`${this.apiUrl}/region/${regionBuscada}`).subscribe(
-      (paisesResponse) => {
-        this._listaPaisesEncontrados = paisesResponse;
-      },
-      (err) => {
-        console.error('El error es, por consoleError', err);
-        if ((err.status = 404)) {
-          this._errorTerminoNoEncontrado = true;
+    this.http
+      .get<Pais[]>(
+        `${this.apiUrl}/region/${regionBuscada}?fields=name;capital;alpha2Code;flag;population`
+      )
+      .subscribe(
+        (paisesResponse) => {
+          this._listaPaisesEncontrados = paisesResponse;
+        },
+        (err) => {
+          console.error('El error es, por consoleError', err);
+          if ((err.status = 404)) {
+            this._errorTerminoNoEncontrado = true;
+          }
         }
-      }
-    );
+      );
   }
 
   detallePaisPorCod(paisBuscadoCod: string) {
     // ponemos a false el mensaje de error
     this._errorTerminoNoEncontrado = false;
 
-    return this.http.get<Pais>(`${this.apiUrl}/alpha/${paisBuscadoCod}`)
+    return this.http.get<Pais>(`${this.apiUrl}/alpha/${paisBuscadoCod}`);
     // .subscribe(
     //   (paisResponse) => {
     //     this._paisDetalle = paisResponse;
