@@ -23,9 +23,13 @@ export class PorPaisComponent {
   //   this.listaPaisesEncontrados = listaPaises;
   // }
 
+  mostrarSugerencias: boolean = true;
+
   constructor(public paisService: PaisService) {}
 
   buscar(termino: string) {
+    this.mostrarSugerencias = false;
+
     this.paisABuscar = termino;
 
     // vaciamos la anterior lista si la hubiera
@@ -35,6 +39,9 @@ export class PorPaisComponent {
   }
 
   sugerencias(termino: string) {
+    this.paisABuscar = termino;
+    this.mostrarSugerencias = true;
+
     // // vaciamos la anterior lista si la hubiera
     // this.paisService.vaciarListaPaisesEncontrados();
 

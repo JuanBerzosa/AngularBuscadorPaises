@@ -9,16 +9,21 @@
     ></app-pais-input>
   </div>
 </div>
-<ul class="list-group">
+<ul *ngIf="paisABuscar && mostrarSugerencias" class="list-group">
   <li
     *ngFor="let item of paisService.listaPaisesSugeridos"
     class="list-group-item list-group-item-action"
-    (click)="buscar(item.name)"
   >
     <a class="nav-link"
     [routerLink]="['pais/', item.alpha2Code]">
       {{ item.name }}
     </a>
+  </li>
+  <li
+    class="list-group-item list-group-item-action"
+    (click)="buscar(paisABuscar)"
+  >
+    <a class="nav-link"> Buscar {{ paisABuscar }} </a>
   </li>
 </ul>
 <hr />
