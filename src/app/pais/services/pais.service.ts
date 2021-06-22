@@ -31,7 +31,7 @@ export class PaisService {
 
   httpParams: HttpParams = new HttpParams().set(
     'fields',
-    'name;capital;alpha2Code;population'
+    'name;capital;alpha2Code;population;flag'
   );
 
   constructor(private http: HttpClient) {}
@@ -122,7 +122,6 @@ export class PaisService {
   }
 
   sugerencias(terminoBuscado: string) {
-    this.httpParams = new HttpParams().set('fields', 'name;alpha2Code;');
 
     this.http
       .get<Pais[]>(`${this.apiUrl}/name/${terminoBuscado}`, {
