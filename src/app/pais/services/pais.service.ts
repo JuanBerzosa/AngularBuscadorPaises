@@ -19,6 +19,10 @@ export class PaisService {
   get errorTerminoNoEncontrado(): boolean {
     return this._errorTerminoNoEncontrado;
   }
+  set errorTerminoNoEncontrado(activado: boolean){
+    this._errorTerminoNoEncontrado = activado;
+    this.vaciarListaPaisesEncontrados();
+  }
   private _paisDetalle: Pais | null = null;
   get paisDetalle(): Pais | null {
     return this._paisDetalle;
