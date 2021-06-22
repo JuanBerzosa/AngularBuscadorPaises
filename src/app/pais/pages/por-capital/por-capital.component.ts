@@ -11,7 +11,7 @@ import { PaisService } from '../../services/pais.service';
 })
 export class PorCapitalComponent implements OnInit {
 
-  terminoBuscar = '';
+  terminoABuscar = '';
 
   get listaPaisesEncontrados(): Pais[] {
     return this.paisService.listaPaisesEncontrados;
@@ -23,12 +23,12 @@ export class PorCapitalComponent implements OnInit {
   }
 
   buscar(termino: string) {
-    this.terminoBuscar = termino;
+    this.terminoABuscar = termino;
 
     // vaciamos la anterior lista si la hubiera
     this.paisService.vaciarListaPaisesEncontrados();
 
-    this.paisService.buscarPorCapital(this.terminoBuscar);
+    this.paisService.buscarPorCapital(this.terminoABuscar);
   }
 
   sugerencias(termino: string) {
