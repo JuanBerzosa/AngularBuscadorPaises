@@ -33,14 +33,4 @@ export class PorCapitalComponent implements OnInit {
     this.paisService.buscarPorCapital(this.terminoABuscar);
   }
 
-  sugerencias(termino: string) {
-    // this.terminoBuscar = termino;
-
-    // // vaciamos la anterior lista si la hubiera
-    // this.paisService.vaciarListaPaisesEncontrados();
-
-    // this.paisService.buscarPorPais(this.terminoBuscar);
-    this.buscar(termino);
-  }
-
 }
