@@ -17,7 +17,9 @@ export class PorCapitalComponent implements OnInit {
     return this.paisService.listaPaisesEncontrados;
   }
 
-  constructor(public paisService: PaisService) {}
+  constructor(public paisService: PaisService) {
+    this.paisService.vaciarListaPaisesEncontrados();
+  }
 
   ngOnInit(): void {
   }

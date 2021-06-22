@@ -25,7 +25,9 @@ export class PorPaisComponent {
 
   mostrarSugerencias: boolean = true;
 
-  constructor(public paisService: PaisService) {}
+  constructor(public paisService: PaisService) {
+    this.paisService.vaciarListaPaisesEncontrados();
+  }
 
   buscar(termino: string) {
     this.mostrarSugerencias = false;
