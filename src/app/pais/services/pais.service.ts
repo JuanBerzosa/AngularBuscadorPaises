@@ -1,5 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+// import { take } from 'rxjs/operators';
 
 import { Pais } from '../models/interfaces/pais.interface';
 
@@ -23,9 +24,14 @@ export class PaisService {
     return this._paisDetalle;
   }
 
+  private _listaPaisesSugeridos: Pais[] = [];
+  get listaPaisesSugeridos(): Pais[] {
+    return this._listaPaisesSugeridos;
+  }
+
   httpParams: HttpParams = new HttpParams().set(
     'fields',
-    'name;capital;alpha2Code;flag;population'
+    'name;capital;alpha2Code;population'
   );
 
   constructor(private http: HttpClient) {}
@@ -113,5 +119,33 @@ export class PaisService {
 
   vaciarListaPaisesEncontrados() {
     this._listaPaisesEncontrados = [];
+  }
+
+  sugerencias(terminoBuscado: string) {
+    this.httpParams = new HttpParams().set('fields', 'name;alpha2Code;');
+
+    this.http
+      .get<Pais[]>(`${this.apiUrl}/name/${terminoBuscado}`, {
+        params: this.httpParams,
+      })
+      // NOTA: Esto no vale, ya que http solo devuelve siempre 1 único resultado (el cual suele ser un array)
+      // .pipe(
+      //   take(5)
+      // )
+      .subscribe(
+        (paisesResponse) => {
+          // ponemos a false el mensaje de error
+          this._errorTerminoNoEncontrado = false;
+
+          // Mostrar solo 5 sugerencias
+          this._listaPaisesSugeridos = paisesResponse.slice(0, 5);
+
+          console.log('this._listaPaisesSugeridos', this._listaPaisesSugeridos);
+
+        },
+        (err) => {
+          this._listaPaisesSugeridos = [];
+        }
+      );
   }
 }

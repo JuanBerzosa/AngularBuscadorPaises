@@ -2,12 +2,24 @@
 <hr />
 <div class="row">
   <div class="col">
-    <app-pais-input (onNuevoTermino)="buscar($event)"
+    <app-pais-input
+      (onNuevoTermino)="buscar($event)"
       (onDebounce)="sugerencias($event)"
       placeholder="Buscar pais..."
     ></app-pais-input>
   </div>
 </div>
+<ul class="list-group">
+  <li
+    *ngFor="let item of paisService.listaPaisesSugeridos"
+    class="list-group-item list-group-item-action"
+    (click)="buscar(item.name)"
+  >
+    <a [routerLink]="['pais/', item.alpha2Code]">
+      {{ item.name }}
+    </a>
+  </li>
+</ul>
 <hr />
 
 <div *ngIf="paisService.errorTerminoNoEncontrado" class="alert alert-danger">
