@@ -14,7 +14,7 @@ import { PaisService } from '../../services/pais.service';
   // ],
 })
 export class PorPaisComponent {
-  paisABuscar = '';
+  terminoABuscar = '';
 
   get listaPaisesEncontrados(): Pais[] {
     return this.paisService.listaPaisesEncontrados;
@@ -32,16 +32,16 @@ export class PorPaisComponent {
   buscar(termino: string) {
     this.mostrarSugerencias = false;
 
-    this.paisABuscar = termino;
+    this.terminoABuscar = termino;
 
     // vaciamos la anterior lista si la hubiera
     this.paisService.vaciarListaPaisesEncontrados();
 
-    this.paisService.buscarPorPais(this.paisABuscar);
+    this.paisService.buscarPorPais(this.terminoABuscar);
   }
 
   sugerencias(termino: string) {
-    this.paisABuscar = termino;
+    this.terminoABuscar = termino;
     this.mostrarSugerencias = true;
 
     // // vaciamos la anterior lista si la hubiera
