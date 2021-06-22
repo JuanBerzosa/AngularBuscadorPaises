@@ -1,5 +1,12 @@
 # BuscadorPaises
 
+Ejercicio para practicar el acceso a APIs mediante httpClient en Angular.
+En este caso, el acceso al API de RESTCOUNTRIES para buscar paises a partir de un término dado, o bien seleccionando por región, capital, etc:
+
+https://restcountries.eu
+
+Con sugerencias en tiempo real al buscar por paises, muestra de datos en una tabla con su nombre, bandera, cantidad de habitantes, etc., creado a mano sin librerías adicionales.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.8.
 
 ## Development server
