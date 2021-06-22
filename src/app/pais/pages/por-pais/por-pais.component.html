@@ -15,7 +15,8 @@
     class="list-group-item list-group-item-action"
     (click)="buscar(item.name)"
   >
-    <a [routerLink]="['pais/', item.alpha2Code]">
+    <a class="nav-link"
+    [routerLink]="['pais/', item.alpha2Code]">
       {{ item.name }}
     </a>
   </li>

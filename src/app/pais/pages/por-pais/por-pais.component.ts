@@ -5,13 +5,13 @@ import { PaisService } from '../../services/pais.service';
 @Component({
   selector: 'app-por-pais',
   templateUrl: './por-pais.component.html',
-  styles: [
-    `
-      li {
-        cursor: pointer;
-      }
-    `,
-  ],
+  // styles: [
+  //   `
+  //     li {
+  //       cursor: pointer;
+  //     }
+  //   `,
+  // ],
 })
 export class PorPaisComponent {
   paisABuscar = '';
@@ -35,7 +35,6 @@ export class PorPaisComponent {
   }
 
   sugerencias(termino: string) {
-
     // // vaciamos la anterior lista si la hubiera
     // this.paisService.vaciarListaPaisesEncontrados();
 
