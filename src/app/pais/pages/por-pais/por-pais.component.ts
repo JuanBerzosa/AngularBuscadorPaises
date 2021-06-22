@@ -42,8 +42,8 @@ export class PorPaisComponent {
 
   sugerencias(termino: string) {
     this.terminoABuscar = termino;
+    this.paisService.errorTerminoNoEncontrado = false;
     this.mostrarSugerencias = true;
-
     // // vaciamos la anterior lista si la hubiera
     // this.paisService.vaciarListaPaisesEncontrados();
 
